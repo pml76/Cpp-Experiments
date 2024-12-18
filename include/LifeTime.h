@@ -8,18 +8,18 @@
 
 #include <cstdio>
 struct LifeTime {
-    LifeTime(){ puts("S()"); }
-    LifeTime(const LifeTime &){ puts("S(const S &)"); }
-    LifeTime(LifeTime &&) noexcept { puts("S(S &&)"); }
+    LifeTime(){ puts("LifeTime()"); }
+    LifeTime(const LifeTime &){ puts("LifeTime(const LifeTime &)"); }
+    LifeTime(LifeTime &&) noexcept { puts("LifeTime(LifeTime &&)"); }
     LifeTime &operator=(const LifeTime &){
-        puts("operator=(const S &)");
+        puts("operator=(const LifeTime &)");
         return *this;
     }
     LifeTime &operator=(LifeTime &&) noexcept {
-        puts("operator=(S &&)");
+        puts("operator=(LifeTime &&)");
         return *this;
     }
-    ~LifeTime() { puts("~S()"); }
+    ~LifeTime() { puts("~LifeTime()"); }
 };
 
 #endif //LIFETIME_H
