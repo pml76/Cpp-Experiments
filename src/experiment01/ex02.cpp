@@ -6,18 +6,21 @@
 #include <string>
 #include "LifeTime.h"
 
-std::map<std::string, LifeTime, std::less<>> get_map() {
-    std::map<std::string, LifeTime, std::less<>> m;
-    m["a"] = LifeTime();
+std::map<std::string, LifeTime, std::less<>> m;
+
+std::map<std::string, LifeTime, std::less<>> &get_map() {
+    m["key"] = LifeTime("a", "b");
     return m;
 }
 
 namespace Functions {
     void ex02() {
-        using element_type = std::pair<const std::string, LifeTime>;
 
-
-        for ([[maybe_unused]] const auto &i: get_map()) {
+        std::cout << "ex02 --- begin" << std::endl;
+        for (auto &[i,k]: get_map()) {
+            std::cout << i << " " << k.payload << std::endl;
+            k.payload = 7;
         }
+        std::cout << "ex02 --- end" << std::endl;
     }
 }
